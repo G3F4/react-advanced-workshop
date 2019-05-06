@@ -1,0 +1,38 @@
+{
+  "list": [
+    {
+      "title": "Premiere Classe Varsovie/Warszawa",
+      "cover": {
+        "url": "https://q-ak.bstatic.com/xdata/images/hotel/square600/177093653.webp?k=f1ab0e1cf6be6c6240c678af20c1cfef04ebe447e870e8ba040942410d82312d&o=",
+        "tag": "Bestseller"
+      },
+      "location": {
+        "address": "Ul. Towarowa 2, Wola, 00-811 Warsaw, Poland",
+        "centre": "1.4 km"
+      },
+      "rating": {
+        "average": "7.6",
+        "reviews": "1260"
+      },
+      "insights": [
+        {
+          "text": "1 other person looked for your dates in the last 10 minutes",
+          "tag": null,
+          "highlights": false
+        },
+        {
+          "text": "1 other person looked for your dates in the last 10 minutes",
+          "tag": "Last booked for your dates 42 minutes ago",
+          "highlights": true
+        }
+      ],
+      "demand": "HIGH",
+      "room": "Double",
+      "price": {
+        "amount": "1,669",
+        "currency": "zł",
+        "breakfast": true
+      }
+    }
+  ]
+}

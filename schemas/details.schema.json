@@ -1,0 +1,177 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "data"
+  ],
+  "properties": {
+    "data": {
+      "$id": "#/properties/data",
+      "type": "object",
+      "title": "The Data Schema",
+      "required": [
+        "type",
+        "title",
+        "images",
+        "description",
+        "address",
+        "rating",
+        "price",
+        "facilities"
+      ],
+      "properties": {
+        "type": {
+          "$id": "#/properties/data/properties/type",
+          "type": "string",
+          "title": "The Type Schema",
+          "default": "",
+          "examples": [
+            "Hotel"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "title": {
+          "$id": "#/properties/data/properties/title",
+          "type": "string",
+          "title": "The Title Schema",
+          "default": "",
+          "examples": [
+            "Premiere Classe Varsovie/Warszawa"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "images": {
+          "$id": "#/properties/data/properties/images",
+          "type": "array",
+          "title": "The Images Schema",
+          "items": {
+            "$id": "#/properties/data/properties/images/items",
+            "type": "string",
+            "title": "The Items Schema",
+            "default": "",
+            "examples": [
+              "https://q-ak.bstatic.com/xdata/images/hotel/square600/177093653.webp?k=f1ab0e1cf6be6c6240c678af20c1cfef04ebe447e870e8ba040942410d82312d&o=",
+              "https://q-ak.bstatic.com/xdata/images/hotel/square600/177093653.webp?k=f1ab0e1cf6be6c6240c678af20c1cfef04ebe447e870e8ba040942410d82312d&o="
+            ],
+            "pattern": "^(.*)$"
+          }
+        },
+        "description": {
+          "$id": "#/properties/data/properties/description",
+          "type": "string",
+          "title": "The Description Schema",
+          "default": "",
+          "examples": [
+            "HTML MARKUP"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "address": {
+          "$id": "#/properties/data/properties/address",
+          "type": "string",
+          "title": "The Address Schema",
+          "default": "",
+          "examples": [
+            "Ul. Towarowa 2, Wola, 00-811 Warsaw, Poland"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "rating": {
+          "$id": "#/properties/data/properties/rating",
+          "type": "object",
+          "title": "The Rating Schema",
+          "required": [
+            "average",
+            "reviews"
+          ],
+          "properties": {
+            "average": {
+              "$id": "#/properties/data/properties/rating/properties/average",
+              "type": "string",
+              "title": "The Average Schema",
+              "default": "",
+              "examples": [
+                "7.6"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "reviews": {
+              "$id": "#/properties/data/properties/rating/properties/reviews",
+              "type": "string",
+              "title": "The Reviews Schema",
+              "default": "",
+              "examples": [
+                "1260"
+              ],
+              "pattern": "^(.*)$"
+            }
+          }
+        },
+        "price": {
+          "$id": "#/properties/data/properties/price",
+          "type": "object",
+          "title": "The Price Schema",
+          "required": [
+            "amount",
+            "currency",
+            "breakfast"
+          ],
+          "properties": {
+            "amount": {
+              "$id": "#/properties/data/properties/price/properties/amount",
+              "type": "string",
+              "title": "The Amount Schema",
+              "default": "",
+              "examples": [
+                "1,669"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "currency": {
+              "$id": "#/properties/data/properties/price/properties/currency",
+              "type": "string",
+              "title": "The Currency Schema",
+              "default": "",
+              "examples": [
+                "zł"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "breakfast": {
+              "$id": "#/properties/data/properties/price/properties/breakfast",
+              "type": "boolean",
+              "title": "The Breakfast Schema",
+              "default": false,
+              "examples": [
+                true
+              ]
+            }
+          }
+        },
+        "facilities": {
+          "$id": "#/properties/data/properties/facilities",
+          "type": "array",
+          "title": "The Facilities Schema",
+          "items": {
+            "$id": "#/properties/data/properties/facilities/items",
+            "type": "string",
+            "title": "The Items Schema",
+            "default": "",
+            "examples": [
+              "NON_SMOKING",
+              "DISABLED_GUESTS_SERVICE",
+              "PARKING",
+              "FREE_WIFI",
+              "PETS_ALLOWED",
+              "BREAKFAST"
+            ],
+            "pattern": "^(.*)$"
+          }
+        }
+      }
+    }
+  }
+}

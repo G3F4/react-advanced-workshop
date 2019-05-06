@@ -1,0 +1,243 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "list"
+  ],
+  "properties": {
+    "list": {
+      "$id": "#/properties/list",
+      "type": "array",
+      "title": "The List Schema",
+      "items": {
+        "$id": "#/properties/list/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "title",
+          "cover",
+          "location",
+          "rating",
+          "insights",
+          "demand",
+          "room",
+          "price"
+        ],
+        "properties": {
+          "title": {
+            "$id": "#/properties/list/items/properties/title",
+            "type": "string",
+            "title": "The Title Schema",
+            "default": "",
+            "examples": [
+              "Premiere Classe Varsovie/Warszawa"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "cover": {
+            "$id": "#/properties/list/items/properties/cover",
+            "type": "object",
+            "title": "The Cover Schema",
+            "required": [
+              "url",
+              "tag"
+            ],
+            "properties": {
+              "url": {
+                "$id": "#/properties/list/items/properties/cover/properties/url",
+                "type": "string",
+                "title": "The Url Schema",
+                "default": "",
+                "examples": [
+                  "https://q-ak.bstatic.com/xdata/images/hotel/square600/177093653.webp?k=f1ab0e1cf6be6c6240c678af20c1cfef04ebe447e870e8ba040942410d82312d&o="
+                ],
+                "pattern": "^(.*)$"
+              },
+              "tag": {
+                "$id": "#/properties/list/items/properties/cover/properties/tag",
+                "type": "string",
+                "title": "The Tag Schema",
+                "default": "",
+                "examples": [
+                  "Bestseller"
+                ],
+                "pattern": "^(.*)$"
+              }
+            }
+          },
+          "location": {
+            "$id": "#/properties/list/items/properties/location",
+            "type": "object",
+            "title": "The Location Schema",
+            "required": [
+              "address",
+              "centre"
+            ],
+            "properties": {
+              "address": {
+                "$id": "#/properties/list/items/properties/location/properties/address",
+                "type": "string",
+                "title": "The Address Schema",
+                "default": "",
+                "examples": [
+                  "Ul. Towarowa 2, Wola, 00-811 Warsaw, Poland"
+                ],
+                "pattern": "^(.*)$"
+              },
+              "centre": {
+                "$id": "#/properties/list/items/properties/location/properties/centre",
+                "type": "string",
+                "title": "The Centre Schema",
+                "default": "",
+                "examples": [
+                  "1.4 km"
+                ],
+                "pattern": "^(.*)$"
+              }
+            }
+          },
+          "rating": {
+            "$id": "#/properties/list/items/properties/rating",
+            "type": "object",
+            "title": "The Rating Schema",
+            "required": [
+              "average",
+              "reviews"
+            ],
+            "properties": {
+              "average": {
+                "$id": "#/properties/list/items/properties/rating/properties/average",
+                "type": "string",
+                "title": "The Average Schema",
+                "default": "",
+                "examples": [
+                  "7.6"
+                ],
+                "pattern": "^(.*)$"
+              },
+              "reviews": {
+                "$id": "#/properties/list/items/properties/rating/properties/reviews",
+                "type": "string",
+                "title": "The Reviews Schema",
+                "default": "",
+                "examples": [
+                  "1260"
+                ],
+                "pattern": "^(.*)$"
+              }
+            }
+          },
+          "insights": {
+            "$id": "#/properties/list/items/properties/insights",
+            "type": "array",
+            "title": "The Insights Schema",
+            "items": {
+              "$id": "#/properties/list/items/properties/insights/items",
+              "type": "object",
+              "title": "The Items Schema",
+              "required": [
+                "text",
+                "tag",
+                "highlights"
+              ],
+              "properties": {
+                "text": {
+                  "$id": "#/properties/list/items/properties/insights/items/properties/text",
+                  "type": "string",
+                  "title": "The Text Schema",
+                  "default": "",
+                  "examples": [
+                    "1 other person looked for your dates in the last 10 minutes"
+                  ],
+                  "pattern": "^(.*)$"
+                },
+                "tag": {
+                  "$id": "#/properties/list/items/properties/insights/items/properties/tag",
+                  "type": "null",
+                  "title": "The Tag Schema",
+                  "default": null,
+                  "examples": [
+                    null
+                  ]
+                },
+                "highlights": {
+                  "$id": "#/properties/list/items/properties/insights/items/properties/highlights",
+                  "type": "boolean",
+                  "title": "The Highlights Schema",
+                  "default": false,
+                  "examples": [
+                    false
+                  ]
+                }
+              }
+            }
+          },
+          "demand": {
+            "$id": "#/properties/list/items/properties/demand",
+            "type": "string",
+            "title": "The Demand Schema",
+            "default": "",
+            "examples": [
+              "HIGH"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "room": {
+            "$id": "#/properties/list/items/properties/room",
+            "type": "string",
+            "title": "The Room Schema",
+            "default": "",
+            "examples": [
+              "Double"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "price": {
+            "$id": "#/properties/list/items/properties/price",
+            "type": "object",
+            "title": "The Price Schema",
+            "required": [
+              "amount",
+              "currency",
+              "breakfast"
+            ],
+            "properties": {
+              "amount": {
+                "$id": "#/properties/list/items/properties/price/properties/amount",
+                "type": "string",
+                "title": "The Amount Schema",
+                "default": "",
+                "examples": [
+                  "1,669"
+                ],
+                "pattern": "^(.*)$"
+              },
+              "currency": {
+                "$id": "#/properties/list/items/properties/price/properties/currency",
+                "type": "string",
+                "title": "The Currency Schema",
+                "default": "",
+                "examples": [
+                  "zł"
+                ],
+                "pattern": "^(.*)$"
+              },
+              "breakfast": {
+                "$id": "#/properties/list/items/properties/price/properties/breakfast",
+                "type": "boolean",
+                "title": "The Breakfast Schema",
+                "default": false,
+                "examples": [
+                  true
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

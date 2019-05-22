@@ -4,6 +4,7 @@ Workshop repo for purpose of WarsawJS workshop#32
 ## Etap 0 - Przygotownie
 
 * sklonuj repozytorium
+* zmień branch na `etap-0`
 * zainstaluj zależności
 * odpal aplikację
 
@@ -48,3 +49,6 @@ Workshop repo for purpose of WarsawJS workshop#32
 ## Etap 5 - Extra
 
 * wykorzystanie dekoratorów do dodania stanu ładowaniu komponentów
+* własny `HOC`?
+* użycie `Context`?
+* wykorzystanie `Portal`?

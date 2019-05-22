@@ -1,18 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { CircularProgress, FormGroup, Grid } from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import MenuItem from '@material-ui/core/MenuItem';
 import Paper from '@material-ui/core/Paper';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
-import TextField from '@material-ui/core/TextField';
-import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -22,13 +20,9 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
-import Autosuggest from 'react-autosuggest';
-import match from 'autosuggest-highlight/match';
-import parse from 'autosuggest-highlight/parse';
+import { withStyles } from '@material-ui/core/styles';
 import Price from '../common/price/Price.jsx';
 import Rating from '../common/rating/Rating.jsx';
-
-const API_HOST = 'https://warsawjs-workshop-32-book-it-m.herokuapp.com';
 
 const styles = theme => ({
   card: {
@@ -44,33 +38,6 @@ const styles = theme => ({
   actions: {
     display: 'flex',
   },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-  },
-  button: {
-    margin: theme.spacing.unit,
-  },
-  suggestionsContainer: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    position: 'relative',
-  },
-  suggestionsContainerOpen: {
-    position: 'absolute',
-    zIndex: theme.zIndex.appBar,
-    marginTop: theme.spacing.unit * -1,
-    left: 0,
-    right: 0,
-  },
-  suggestion: {
-    display: 'block',
-  },
-  suggestionsList: {
-    margin: 0,
-    padding: 0,
-    listStyleType: 'none',
-  },
   floatRight: {
     marginLeft: 'auto',
   },
@@ -79,7 +46,7 @@ const styles = theme => ({
   },
 });
 
-class AccommodationList extends Component {
+class AccommodationList extends React.Component {
   static propTypes = {
     classes: PropTypes.object,
     accommodations: PropTypes.object.isRequired,

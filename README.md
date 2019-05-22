@@ -17,6 +17,7 @@ Workshop repo for purpose of WarsawJS workshop#32
   * rozróżnienie komponetów na zawierające logikę oraz prezentacyjne
   * wydzielenie powtarzalnych części JSX do reużywalnych komponentów
 * wykorzystanie dynamicznego wybierania typu do powiązania enumów do komponentów (np. rodzaj `facility` na odpowiednią ikonę)
+  * [docs](https://reactjs.org/docs/jsx-in-depth.html#choosing-the-type-at-runtime)
 
 
 ## Etap 2 - Hooks

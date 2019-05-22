@@ -13,71 +13,67 @@
       "type": "object",
       "title": "The Data Schema",
       "required": [
-        "type",
-        "title",
-        "images",
-        "description",
-        "address",
-        "rating",
+        "id",
         "price",
-        "facilities"
+        "rating",
+        "title",
+        "address",
+        "description",
+        "facilities",
+        "images",
+        "type"
       ],
       "properties": {
-        "type": {
-          "$id": "#/properties/data/properties/type",
+        "id": {
+          "$id": "#/properties/data/properties/id",
           "type": "string",
-          "title": "The Type Schema",
+          "title": "The Id Schema",
           "default": "",
           "examples": [
-            "Hotel"
+            "d39d98ba-d8fd-4dd9-bb6c-5827b83417ea"
           ],
           "pattern": "^(.*)$"
         },
-        "title": {
-          "$id": "#/properties/data/properties/title",
-          "type": "string",
-          "title": "The Title Schema",
-          "default": "",
-          "examples": [
-            "Premiere Classe Varsovie/Warszawa"
+        "price": {
+          "$id": "#/properties/data/properties/price",
+          "type": "object",
+          "title": "The Price Schema",
+          "required": [
+            "amount",
+            "breakfast",
+            "currency"
           ],
-          "pattern": "^(.*)$"
-        },
-        "images": {
-          "$id": "#/properties/data/properties/images",
-          "type": "array",
-          "title": "The Images Schema",
-          "items": {
-            "$id": "#/properties/data/properties/images/items",
-            "type": "string",
-            "title": "The Items Schema",
-            "default": "",
-            "examples": [
-              "https://q-ak.bstatic.com/xdata/images/hotel/square600/177093653.webp?k=f1ab0e1cf6be6c6240c678af20c1cfef04ebe447e870e8ba040942410d82312d&o=",
-              "https://q-ak.bstatic.com/xdata/images/hotel/square600/177093653.webp?k=f1ab0e1cf6be6c6240c678af20c1cfef04ebe447e870e8ba040942410d82312d&o="
-            ],
-            "pattern": "^(.*)$"
+          "properties": {
+            "amount": {
+              "$id": "#/properties/data/properties/price/properties/amount",
+              "type": "string",
+              "title": "The Amount Schema",
+              "default": "",
+              "examples": [
+                "7810"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "breakfast": {
+              "$id": "#/properties/data/properties/price/properties/breakfast",
+              "type": "boolean",
+              "title": "The Breakfast Schema",
+              "default": false,
+              "examples": [
+                true
+              ]
+            },
+            "currency": {
+              "$id": "#/properties/data/properties/price/properties/currency",
+              "type": "string",
+              "title": "The Currency Schema",
+              "default": "",
+              "examples": [
+                "C$"
+              ],
+              "pattern": "^(.*)$"
+            }
           }
-        },
-        "description": {
-          "$id": "#/properties/data/properties/description",
-          "type": "string",
-          "title": "The Description Schema",
-          "default": "",
-          "examples": [
-            "HTML MARKUP"
-          ],
-          "pattern": "^(.*)$"
-        },
-        "address": {
-          "$id": "#/properties/data/properties/address",
-          "type": "string",
-          "title": "The Address Schema",
-          "default": "",
-          "examples": [
-            "Ul. Towarowa 2, Wola, 00-811 Warsaw, Poland"
-          ],
-          "pattern": "^(.*)$"
         },
         "rating": {
           "$id": "#/properties/data/properties/rating",
@@ -94,7 +90,7 @@
               "title": "The Average Schema",
               "default": "",
               "examples": [
-                "7.6"
+                "9.1"
               ],
               "pattern": "^(.*)$"
             },
@@ -104,72 +100,84 @@
               "title": "The Reviews Schema",
               "default": "",
               "examples": [
-                "1260"
+                "1991"
               ],
               "pattern": "^(.*)$"
             }
           }
         },
-        "price": {
-          "$id": "#/properties/data/properties/price",
-          "type": "object",
-          "title": "The Price Schema",
-          "required": [
-            "amount",
-            "currency",
-            "breakfast"
+        "title": {
+          "$id": "#/properties/data/properties/title",
+          "type": "string",
+          "title": "The Title Schema",
+          "default": "",
+          "examples": [
+            "Sleek Steel Bacon"
           ],
-          "properties": {
-            "amount": {
-              "$id": "#/properties/data/properties/price/properties/amount",
-              "type": "string",
-              "title": "The Amount Schema",
-              "default": "",
-              "examples": [
-                "1,669"
-              ],
-              "pattern": "^(.*)$"
-            },
-            "currency": {
-              "$id": "#/properties/data/properties/price/properties/currency",
-              "type": "string",
-              "title": "The Currency Schema",
-              "default": "",
-              "examples": [
-                "zł"
-              ],
-              "pattern": "^(.*)$"
-            },
-            "breakfast": {
-              "$id": "#/properties/data/properties/price/properties/breakfast",
-              "type": "boolean",
-              "title": "The Breakfast Schema",
-              "default": false,
-              "examples": [
-                true
-              ]
-            }
-          }
+          "pattern": "^(.*)$"
+        },
+        "address": {
+          "$id": "#/properties/data/properties/address",
+          "type": "string",
+          "title": "The Address Schema",
+          "default": "",
+          "examples": [
+            "46632 Łukasiewicz Port, 50-730, Grecja"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "description": {
+          "$id": "#/properties/data/properties/description",
+          "type": "string",
+          "title": "The Description Schema",
+          "default": "",
+          "examples": [
+            "Unde ad laudantium eum suscipit rerum tempora explicabo reprehenderit. Aut non neque blanditiis. Non minus molestiae velit non officia. Tempore optio unde quae voluptas ipsa sed culpa. Aliquam voluptate ratione minus sapiente et reiciendis. Ratione maiores eveniet amet quo corporis optio dolorum.\n \rVoluptas et qui ipsum voluptatibus ratione eveniet. Incidunt velit fugiat consequatur. Illum ab est.\n \rAutem reprehenderit enim repellendus. Voluptatem sequi sint nulla. Porro distinctio autem earum eius ea aliquid maiores accusantium. Molestias aliquid dignissimos nobis adipisci. In quia illum. Hic debitis voluptatibus nobis quaerat."
+          ],
+          "pattern": "^(.*)$"
         },
         "facilities": {
           "$id": "#/properties/data/properties/facilities",
           "type": "array",
-          "title": "The Facilities Schema",
+          "title": "The Facilities Schema"
+        },
+        "images": {
+          "$id": "#/properties/data/properties/images",
+          "type": "array",
+          "title": "The Images Schema",
           "items": {
-            "$id": "#/properties/data/properties/facilities/items",
+            "$id": "#/properties/data/properties/images/items",
             "type": "string",
             "title": "The Items Schema",
             "default": "",
             "examples": [
-              "NON_SMOKING",
-              "DISABLED_GUESTS_SERVICE",
-              "PARKING",
-              "FREE_WIFI",
-              "PETS_ALLOWED",
-              "BREAKFAST"
+              "http://lorempixel.com/640/480/city",
+              "http://lorempixel.com/640/480/city",
+              "http://lorempixel.com/640/480/city",
+              "http://lorempixel.com/640/480/city",
+              "http://lorempixel.com/640/480/city",
+              "http://lorempixel.com/640/480/city",
+              "http://lorempixel.com/640/480/city",
+              "http://lorempixel.com/640/480/city",
+              "http://lorempixel.com/640/480/city",
+              "http://lorempixel.com/640/480/city",
+              "http://lorempixel.com/640/480/city",
+              "http://lorempixel.com/640/480/city",
+              "http://lorempixel.com/640/480/city",
+              "http://lorempixel.com/640/480/city"
             ],
             "pattern": "^(.*)$"
           }
+        },
+        "type": {
+          "$id": "#/properties/data/properties/type",
+          "type": "string",
+          "title": "The Type Schema",
+          "default": "",
+          "examples": [
+            "HOTEL"
+          ],
+          "pattern": "^(.*)$"
         }
       }
     }

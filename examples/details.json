@@ -1,29 +1,35 @@
 {
   "data": {
-    "type": "Hotel",
-    "title": "Premiere Classe Varsovie/Warszawa",
-    "images": [
-      "https://q-ak.bstatic.com/xdata/images/hotel/square600/177093653.webp?k=f1ab0e1cf6be6c6240c678af20c1cfef04ebe447e870e8ba040942410d82312d&o=",
-      "https://q-ak.bstatic.com/xdata/images/hotel/square600/177093653.webp?k=f1ab0e1cf6be6c6240c678af20c1cfef04ebe447e870e8ba040942410d82312d&o="
-    ],
-    "description": "HTML MARKUP",
-    "address": "Ul. Towarowa 2, Wola, 00-811 Warsaw, Poland",
-    "rating": {
-      "average": "7.6",
-      "reviews": "1260"
-    },
+    "id": "d39d98ba-d8fd-4dd9-bb6c-5827b83417ea",
     "price": {
-      "amount": "1,669",
-      "currency": "zł",
-      "breakfast": true
+      "amount": "7810",
+      "breakfast": true,
+      "currency": "C$"
     },
-    "facilities": [
-      "NON_SMOKING",
-      "DISABLED_GUESTS_SERVICE",
-      "PARKING",
-      "FREE_WIFI",
-      "PETS_ALLOWED",
-      "BREAKFAST"
-    ]
+    "rating": {
+      "average": "9.1",
+      "reviews": "1991"
+    },
+    "title": "Sleek Steel Bacon",
+    "address": "46632 Łukasiewicz Port, 50-730, Grecja",
+    "description": "Unde ad laudantium eum suscipit rerum tempora explicabo reprehenderit. Aut non neque blanditiis. Non minus molestiae velit non officia. Tempore optio unde quae voluptas ipsa sed culpa. Aliquam voluptate ratione minus sapiente et reiciendis. Ratione maiores eveniet amet quo corporis optio dolorum.\n \rVoluptas et qui ipsum voluptatibus ratione eveniet. Incidunt velit fugiat consequatur. Illum ab est.\n \rAutem reprehenderit enim repellendus. Voluptatem sequi sint nulla. Porro distinctio autem earum eius ea aliquid maiores accusantium. Molestias aliquid dignissimos nobis adipisci. In quia illum. Hic debitis voluptatibus nobis quaerat.",
+    "facilities": [],
+    "images": [
+      "http://lorempixel.com/640/480/city",
+      "http://lorempixel.com/640/480/city",
+      "http://lorempixel.com/640/480/city",
+      "http://lorempixel.com/640/480/city",
+      "http://lorempixel.com/640/480/city",
+      "http://lorempixel.com/640/480/city",
+      "http://lorempixel.com/640/480/city",
+      "http://lorempixel.com/640/480/city",
+      "http://lorempixel.com/640/480/city",
+      "http://lorempixel.com/640/480/city",
+      "http://lorempixel.com/640/480/city",
+      "http://lorempixel.com/640/480/city",
+      "http://lorempixel.com/640/480/city",
+      "http://lorempixel.com/640/480/city"
+    ],
+    "type": "HOTEL"
   }
 }

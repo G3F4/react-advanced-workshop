@@ -1,8 +1,10 @@
+import { Grid } from '@material-ui/core';
 import React, { Component } from 'react';
 import tinyParams from 'tiny-params';
 import AccommodationDetails from './components/accommodation-details/AccommodationDetails.jsx';
 import AccommodationList from './components/accommodation-list/AccommodationList.jsx';
 import Favorites from './components/favorites/Favorites.jsx';
+import Filters from './components/filters/Filters.jsx';
 import Header from './components/header/Header.jsx';
 import './App.css';
 
@@ -152,16 +154,20 @@ class App extends Component {
             onBackToList={this.handleBackToList}
           />
         ) : (
-          <AccommodationList
-            accommodations={accommodations}
-            favorites={favorites}
-            filters={filters}
-            sorting={sorting}
-            onDetails={this.fetchDetails}
-            onFavorite={this.handleFavorite}
-            onSearch={this.fetchList}
-            onFiltersChange={this.handleFiltersChange}
-          />
+          <Grid container>
+            <Filters
+              filters={filters}
+              onSearch={this.fetchList}
+              onFiltersChange={this.handleFiltersChange}
+            />
+            <AccommodationList
+              accommodations={accommodations}
+              favorites={favorites}
+              sorting={sorting}
+              onDetails={this.fetchDetails}
+              onFavorite={this.handleFavorite}
+            />
+          </Grid>
         )}
         <Favorites
           favorites={favorites}

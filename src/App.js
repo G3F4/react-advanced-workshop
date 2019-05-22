@@ -46,6 +46,8 @@ import './App.css';
 
 const FAVORITES_LOCAL_STORAGE_KEY = 'favorites';
 
+const API_HOST = 'https://warsawjs-workshop-32-book-it-m.herokuapp.com';
+
 const SORTING = ['MAX_AVG_RATING', 'MAX_REVIEWS', 'MIN_PRICE', 'MAX_PRICE'];
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
@@ -212,7 +214,7 @@ class App extends Component {
       },
     });
 
-    fetch(url).then(response => {
+    fetch(`${API_HOST}${url}`).then(response => {
       response.json().then(({ list }) => {
         this.setState({
           accommodations: {
@@ -246,7 +248,7 @@ class App extends Component {
 
     window.history.pushState(null, '', url);
 
-    fetch(url).then(response => {
+    fetch(`${API_HOST}${url}`).then(response => {
       response.json().then(({ data }) => {
         this.setState({
           openedDetails: {

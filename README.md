@@ -17,9 +17,13 @@ Workshop repo for purpose of WarsawJS workshop#32
     * wspólne komponenty
     * layout
     * widoki/stany
+    * uwaga: nazwy komponentów warto nazywać biznesowo a nie technicznie
   * wydzielenie nagłówka aplikacji oraz dolnej półki do osobnych komponentów
+    * uwaga: funckje przekazywane jako propsy warto nazwać z prefixem `on`, np: `onSearch`
   * wydzielenie listy oraz szczegółów do osobnych komponentów
+    * uwaga: w przypadku listy warto utworzyć komponent typu kontener, zawierający logikę oraz wyświetlający komponenty odpowiedzialne za wyświetlenie filtrów oraz wyników wyszukiwania
   * wydzielenie powtarzalnych części JSX do reużywalnych komponentów
+    * uwaga: podobnie wyglądające części apkikacji to np: cena, rating czy przycisk udostępniania
 * dodatkowo: otypowanie propsów przy wykorzystaniu `prop-types`
   * [docs](https://www.npmjs.com/package/prop-types)
 * dodatkowo: wykorzystanie dynamicznego wybierania typu do powiązania enumów do komponentów (np. rodzaj `facility` na odpowiednią ikonę)

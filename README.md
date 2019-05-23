@@ -13,10 +13,16 @@ Workshop repo for purpose of WarsawJS workshop#32
 [docs](https://reactjs.org/docs/reconciliation.html)
 
 * wydzielenie komponentów
-  * struktura folderów i podstawowy podział komponentów (wydzielenie widoków, modułów aplikacji)
+  * struktura folderów komponentów
+    * wspólne komponenty
+    * layout
+    * widoki/stany
+  * wydzielenie nagłówka aplikacji oraz dolnej półki do osobnych komponentów
+  * wydzielenie listy oraz szczegółów do osobnych komponentów
   * wydzielenie powtarzalnych części JSX do reużywalnych komponentów
-  * dodatkowo: otypowanie propsów przy wykorzystaniu `prop-types`
-* wykorzystanie dynamicznego wybierania typu do powiązania enumów do komponentów (np. rodzaj `facility` na odpowiednią ikonę)
+* dodatkowo: otypowanie propsów przy wykorzystaniu `prop-types`
+  * [docs](https://www.npmjs.com/package/prop-types)
+* dodatkowo: wykorzystanie dynamicznego wybierania typu do powiązania enumów do komponentów (np. rodzaj `facility` na odpowiednią ikonę)
   * [docs](https://reactjs.org/docs/jsx-in-depth.html#choosing-the-type-at-runtime)
 
 

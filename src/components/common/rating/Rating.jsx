@@ -1,7 +1,7 @@
-import Avatar from '@material-ui/core/Avatar';
-import blue from '@material-ui/core/colors/blue.js';
 import React from 'react';
 import PropTypes from 'prop-types';
+import Avatar from '@material-ui/core/Avatar';
+import blue from '@material-ui/core/colors/blue.js';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core';
 

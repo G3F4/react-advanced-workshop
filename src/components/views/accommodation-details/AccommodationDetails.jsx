@@ -1,27 +1,21 @@
+import React from 'react';
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import { CircularProgress } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import ShareIcon from '@material-ui/icons/Share';
-import MobileStepper from '@material-ui/core/MobileStepper';
-import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
-import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
-import Price from '../common/price/Price.jsx';
-import Rating from '../common/rating/Rating.jsx';
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
+import Typography from '@material-ui/core/Typography';
+import MobileStepper from '@material-ui/core/MobileStepper';
+import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft.js';
+import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight.js';
+import { withStyles } from '@material-ui/core/styles';
+import Price from '../../common/price/Price.jsx';
+import Rating from '../../common/rating/Rating.jsx';
+import Share from '../../common/share/Share.jsx';
 import FacilityIcon from './facility-icon/FacilityIcon.jsx';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
@@ -51,7 +45,7 @@ const styles = theme => ({
   },
 });
 
-class AccommodationDetails extends Component {
+class AccommodationDetails extends React.Component {
   static propTypes = {
     classes: PropTypes.object,
     theme: PropTypes.object,
@@ -87,34 +81,6 @@ class AccommodationDetails extends Component {
   handleShareDialogClose = () => {
     this.setState({ shareId: '' });
   };
-
-  renderShareButton(id) {
-    return (
-      <div>
-        <IconButton aria-label="Share" onClick={() => this.handleShareDialogOpen(id)}>
-          <ShareIcon />
-        </IconButton>
-        <Dialog
-          fullScreen={this.props.fullScreen}
-          open={this.state.shareId === id}
-          onClose={this.handleShareDialogClose}
-          aria-labelledby="responsive-dialog-title"
-        >
-          <DialogTitle id="responsive-dialog-title">{"Copy this link and share!"}</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              {`${window.location.origin}/details?id=${id}`}
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={this.handleShareDialogClose} color="primary" autoFocus>
-              Close
-            </Button>
-          </DialogActions>
-        </Dialog>
-      </div>
-    )
-  }
 
   render() {
     const { classes, theme, openedDetails, onBackToList } = this.props;
@@ -175,7 +141,12 @@ class AccommodationDetails extends Component {
                   <FacilityIcon facilities={openedDetails.data.facilities} />
                 </CardContent>
                 <CardActions className={classes.actions} disableActionSpacing>
-                  {this.renderShareButton(openedDetails.data.id)}
+                  <Share
+                    id={openedDetails.data.id}
+                    open={this.state.shareId === openedDetails.data.id}
+                    onClose={this.handleShareDialogClose}
+                    onOpen={this.handleShareDialogOpen}
+                  />
                   <Button
                     aria-label="Back to list"
                     className={classes.floatRight}

@@ -49,7 +49,11 @@ class Filters extends React.Component {
     classes: PropTypes.object,
     filters: PropTypes.object.isRequired,
     onSearch: PropTypes.func.isRequired,
-    onFiltersChange: PropTypes.func.isRequired,
+    onSearchChange: PropTypes.func.isRequired,
+    onFiltersCentreChange: PropTypes.func.isRequired,
+    onFiltersPriceChange: PropTypes.func.isRequired,
+    onFiltersMinAvgRatingChange: PropTypes.func.isRequired,
+    onFiltersMinReviewsCountChange: PropTypes.func.isRequired,
   };
 
   state = {
@@ -67,41 +71,6 @@ class Filters extends React.Component {
   handleSuggestionsClearRequested = () => {
     this.setState({
       suggestions: [],
-    });
-  };
-
-  handleSearchChange = (event, { newValue } = {}) => {
-    this.props.onFiltersChange({
-      ...this.props.filters,
-      search: newValue || event.target.value,
-    });
-  };
-
-  handleFiltersCentreChange = (event) => {
-    this.props.onFiltersChange({
-      ...this.props.filters,
-      centre: event.target.value,
-    });
-  };
-
-  handleFiltersPriceChange = (event) => {
-    this.props.onFiltersChange({
-      ...this.props.filters,
-      minPrice: event.target.value,
-    });
-  };
-
-  handleFiltersMinAvgRatingChange = (event) => {
-    this.props.onFiltersChange({
-      ...this.props.filters,
-      minAvgRating: event.target.value,
-    });
-  };
-
-  handleFiltersMinReviewsCountChange = (event) => {
-    this.props.onFiltersChange({
-      ...this.props.filters,
-      minReviewsCount: event.target.value,
     });
   };
 
@@ -155,7 +124,16 @@ class Filters extends React.Component {
   }
 
   render() {
-    const { classes, filters, onSearch } = this.props;
+    const {
+      classes,
+      filters,
+      onSearch,
+      onSearchChange,
+      onFiltersCentreChange,
+      onFiltersPriceChange,
+      onFiltersMinAvgRatingChange,
+      onFiltersMinReviewsCountChange,
+    } = this.props;
 
     return (
       <Grid item xs={3}>
@@ -173,7 +151,7 @@ class Filters extends React.Component {
                 classes,
                 placeholder: 'Destination',
                 value: filters.search,
-                onChange: this.handleSearchChange,
+                onChange: onSearchChange,
               }}
               theme={{
                 container: classes.suggestionsContainer,
@@ -195,7 +173,7 @@ class Filters extends React.Component {
               label="Max. centre distance"
               className={classes.textField}
               value={filters.centre}
-              onChange={this.handleFiltersCentreChange}
+              onChange={onFiltersCentreChange}
               margin="normal"
               variant="outlined"
               type="number"
@@ -209,7 +187,7 @@ class Filters extends React.Component {
               label="Min. price"
               className={classes.textField}
               value={filters.minPrice}
-              onChange={this.handleFiltersPriceChange}
+              onChange={onFiltersPriceChange}
               margin="normal"
               variant="outlined"
               type="number"
@@ -223,7 +201,7 @@ class Filters extends React.Component {
               label="Min. average rating"
               className={classes.textField}
               value={filters.minAvgRating}
-              onChange={this.handleFiltersMinAvgRatingChange}
+              onChange={onFiltersMinAvgRatingChange}
               margin="normal"
               variant="outlined"
               type="number"
@@ -237,7 +215,7 @@ class Filters extends React.Component {
               label="Min. reviews count"
               className={classes.textField}
               value={filters.minReviewsCount}
-              onChange={this.handleFiltersMinReviewsCountChange}
+              onChange={onFiltersMinReviewsCountChange}
               margin="normal"
               variant="outlined"
               type="number"

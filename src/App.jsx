@@ -1,11 +1,9 @@
-import { Grid } from '@material-ui/core';
 import React, { Component } from 'react';
 import tinyParams from 'tiny-params';
-import AccommodationDetails from './components/accommodation-details/AccommodationDetails.jsx';
-import AccommodationList from './components/accommodation-list/AccommodationList.jsx';
-import Favorites from './components/favorites/Favorites.jsx';
-import Filters from './components/filters/Filters.jsx';
-import Header from './components/header/Header.jsx';
+import AccommodationDetails from './components/views/accommodation-details/AccommodationDetails.jsx';
+import AccommodationList from './components/views/accommodation-list/AccommodationList.jsx';
+import Favorites from './components/layout/favorites-drawer/FavoritesDrawer.jsx';
+import Header from './components/layout/header/Header.jsx';
 import './App.css';
 
 const FAVORITES_LOCAL_STORAGE_KEY = 'favorites';
@@ -132,6 +130,10 @@ class App extends Component {
     this.setState({ filters });
   };
 
+  handleSortingChange = sorting => {
+    this.setState({ sorting }, this.fetchList);
+  };
+
   handleFavorite = (favorite) => {
     const { favorites } = this.state;
     const addToFavorite = favorites.findIndex(({ id }) => favorite.id === id) < 0;
@@ -154,20 +156,17 @@ class App extends Component {
             onBackToList={this.handleBackToList}
           />
         ) : (
-          <Grid container>
-            <Filters
-              filters={filters}
-              onSearch={this.fetchList}
-              onFiltersChange={this.handleFiltersChange}
-            />
-            <AccommodationList
-              accommodations={accommodations}
-              favorites={favorites}
-              sorting={sorting}
-              onDetails={this.fetchDetails}
-              onFavorite={this.handleFavorite}
-            />
-          </Grid>
+          <AccommodationList
+            filters={filters}
+            accommodations={accommodations}
+            favorites={favorites}
+            sorting={sorting}
+            onDetails={this.fetchDetails}
+            onFavorite={this.handleFavorite}
+            onSortingChange={this.handleSortingChange}
+            onSearch={this.fetchList}
+            onFiltersChange={this.handleFiltersChange}
+          />
         )}
         <Favorites
           favorites={favorites}

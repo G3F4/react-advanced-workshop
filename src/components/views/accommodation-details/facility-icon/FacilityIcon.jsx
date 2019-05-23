@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import blue from '@material-ui/core/colors/blue';
-import Error from '@material-ui/icons/Error';
-import SmokeFree from '@material-ui/icons/SmokeFree';
-import AccessibleForward from '@material-ui/icons/AccessibleForward';
-import LocalParking from '@material-ui/icons/LocalParking';
-import Wifi from '@material-ui/icons/Wifi';
-import Pets from '@material-ui/icons/Pets';
-import FreeBreakfast from '@material-ui/icons/FreeBreakfast';
+import blue from '@material-ui/core/colors/blue.js';
+import Error from '@material-ui/icons/Error.js';
+import SmokeFree from '@material-ui/icons/SmokeFree.js';
+import AccessibleForward from '@material-ui/icons/AccessibleForward.js';
+import LocalParking from '@material-ui/icons/LocalParking.js';
+import Wifi from '@material-ui/icons/Wifi.js';
+import Pets from '@material-ui/icons/Pets.js';
+import FreeBreakfast from '@material-ui/icons/FreeBreakfast.js';
 import { withStyles } from '@material-ui/core/styles';
 
 const ICONS_MAP = {

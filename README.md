@@ -10,7 +10,7 @@ Workshop repo for purpose of WarsawJS workshop#32
 
 ## Etap 1 - Reconciliation
 
-[docs](https://reactjs.org/docs/reconciliation.html)
+[Czym jest rekosillllcoooś tam?](https://reactjs.org/docs/reconciliation.html)
 
 * wydzielenie komponentów
   * struktura folderów komponentów
@@ -25,7 +25,7 @@ Workshop repo for purpose of WarsawJS workshop#32
   * wydzielenie powtarzalnych części JSX do reużywalnych komponentów
     * uwaga: podobnie wyglądające części apkikacji to np: cena, rating czy przycisk udostępniania
 * dodatkowo: otypowanie propsów przy wykorzystaniu `prop-types`
-  * [docs](https://www.npmjs.com/package/prop-types)
+  * [README](https://www.npmjs.com/package/prop-types)
 * dodatkowo: wykorzystanie dynamicznego wybierania typu do powiązania enumów do komponentów (np. rodzaj `facility` na odpowiednią ikonę)
   * [docs](https://reactjs.org/docs/jsx-in-depth.html#choosing-the-type-at-runtime)
 

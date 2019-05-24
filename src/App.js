@@ -1,7 +1,6 @@
 import { CircularProgress, FormGroup, Grid } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
-import CardActionArea from '@material-ui/core/CardActionArea';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -24,7 +23,6 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import blue from '@material-ui/core/colors/blue';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import SmokeFree from '@material-ui/icons/SmokeFree';
 import AccessibleForward from '@material-ui/icons/AccessibleForward';
@@ -32,7 +30,6 @@ import LocalParking from '@material-ui/icons/LocalParking';
 import Wifi from '@material-ui/icons/Wifi';
 import Pets from '@material-ui/icons/Pets';
 import FreeBreakfast from '@material-ui/icons/FreeBreakfast';
-import Close from '@material-ui/icons/Close';
 import Autosuggest from 'react-autosuggest';
 import match from 'autosuggest-highlight/match';
 import parse from 'autosuggest-highlight/parse';
@@ -43,8 +40,6 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
 import './App.css';
-
-const FAVORITES_LOCAL_STORAGE_KEY = 'favorites';
 
 const API_HOST = 'https://warsawjs-workshop-32-book-it-m.herokuapp.com';
 
@@ -66,29 +61,8 @@ const styles = theme => ({
     height: 0,
     paddingTop: '30%',
   },
-  favoriteInfo: {
-    padding: theme.spacing.unit,
-    paddingBottom: 0,
-  },
-  favoriteActions: {
-    padding: 0,
-  },
-  favoriteCard: {
-    maxWidth: 345,
-    minWidth: 345,
-  },
-  favoriteMedia: {
-    objectFit: 'cover',
-  },
   actions: {
     display: 'flex',
-  },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
   },
   avatar: {
     backgroundColor: blue[600],
@@ -133,10 +107,6 @@ const styles = theme => ({
     overflow: 'hidden',
     margin: '0 auto',
   },
-  imageSlider: {
-    maxWidth: 400,
-    flexGrow: 1,
-  },
   facilities: {
     marginTop: theme.spacing.unit * 3,
   },
@@ -145,13 +115,6 @@ const styles = theme => ({
   },
   accommodations: {
     marginRight: theme.spacing.unit,
-  },
-  bottomDrawer: {
-    position: 'sticky',
-    bottom: 0,
-    display: 'flex',
-    overflow: 'scroll',
-    zIndex: theme.zIndex.drawer,
   },
 });
 
@@ -176,8 +139,7 @@ class App extends Component {
     popper: '',
     suggestions: [],
     openedDetails: null,
-    activeStep: 0,
-    favorites: JSON.parse(localStorage.getItem(FAVORITES_LOCAL_STORAGE_KEY) || "[]"),
+    activeStep: 0
   };
 
   componentDidMount() {
@@ -292,7 +254,7 @@ class App extends Component {
   };
 
   handleSuggestionsFetchRequested = ({ value }) => {
-    fetch(`/suggestions?search=${value}`).then(response => {
+    fetch(`${API_HOST}/suggestions?search=${value}`).then(response => {
       response.json().then(({ suggestions }) => {
         this.setState({ suggestions });
       });
@@ -352,16 +314,6 @@ class App extends Component {
         minReviewsCount: event.target.value,
       },
     });
-  };
-
-  handleFavorite = (favorite) => {
-    const { favorites } = this.state;
-    const addToFavorite = favorites.findIndex(({ id }) => favorite.id === id) < 0;
-    const updatedFavorites = addToFavorite ?
-      [...favorites, favorite] : favorites.filter(item => item.id !== favorite.id);
-
-    localStorage.setItem(FAVORITES_LOCAL_STORAGE_KEY, JSON.stringify(updatedFavorites));
-    this.setState({ favorites: updatedFavorites });
   };
 
   handleShareDialogOpen = (shareId) => {
@@ -451,7 +403,7 @@ class App extends Component {
 
   render() {
     const { classes, theme } = this.props;
-    const { accommodations, filters, sorting, openedDetails, activeStep, favorites, suggestions } = this.state;
+    const { accommodations, filters, sorting, openedDetails, activeStep, suggestions } = this.state;
 
     return (
       <div className="App">
@@ -754,12 +706,6 @@ class App extends Component {
                                 ))}
                               </CardContent>
                               <CardActions className={classes.actions} disableActionSpacing>
-                                <IconButton
-                                  onClick={() => { this.handleFavorite(item); }}
-                                  aria-label="Add to favorites"
-                                >
-                                  <FavoriteIcon color={favorites.map(({ id }) => id).includes(item.id) ? 'error' : 'disabled'} />
-                                </IconButton>
                                 {this.renderShareButton(item.id)}
                                 <Button
                                   aria-label="Details"
@@ -780,51 +726,6 @@ class App extends Component {
             </Grid>
           </Grid>
         )}
-        <Card className={classes.bottomDrawer}>
-          {favorites.map(item => (
-            <Card className={classes.favoriteCard} key={item.id}>
-              <CardActionArea>
-                <CardMedia
-                  component="img"
-                  alt={item.title}
-                  className={classes.favoriteMedia}
-                  height="100"
-                  image={item.cover.url}
-                  title={item.title}
-                />
-                <CardContent className={classes.favoriteInfo}>
-                  <Typography variant="subheading">
-                    {item.title}
-                  </Typography>
-                  <div className={classes.price}>
-                    <Typography variant="body1">
-                      {`Price: ${item.price.amount} zł`}
-                    </Typography>
-                    <Typography variant="body1">
-                      {item.price.breakfast ? (
-                        <span>Breakfast included</span>
-                      ) : (
-                        <span>Breakfast not included</span>
-                      )}
-                    </Typography>
-                  </div>
-                </CardContent>
-              </CardActionArea>
-              <CardActions className={classes.favoriteActions}>
-                <IconButton onClick={() => this.handleFavorite(item)} aria-label="Remove from favorites">
-                  <Close />
-                </IconButton>
-                <Button
-                  className={classes.floatRight}
-                  aria-label="Details"
-                  onClick={() => this.fetchDetails(item.id)}
-                >
-                  Details
-                </Button>
-              </CardActions>
-            </Card>
-          ))}
-        </Card>
       </div>
     );
   }

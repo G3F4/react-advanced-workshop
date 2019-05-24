@@ -8,10 +8,8 @@ class AccommodationList extends React.Component {
   static propTypes = {
     classes: PropTypes.object,
     accommodations: PropTypes.object.isRequired,
-    favorites: PropTypes.array.isRequired,
     filters: PropTypes.object.isRequired,
     sorting: PropTypes.number.isRequired,
-    onFavorite: PropTypes.func.isRequired,
     onDetails: PropTypes.func.isRequired,
     onSortingChange: PropTypes.func.isRequired,
     onSearch: PropTypes.func.isRequired,
@@ -74,10 +72,8 @@ class AccommodationList extends React.Component {
       accommodations,
       filters,
       sorting,
-      favorites,
       onSearch,
       onDetails,
-      onFavorite
     } = this.props;
     const { shareId } = this.state;
 
@@ -94,11 +90,9 @@ class AccommodationList extends React.Component {
         />
         <List
           accommodations={accommodations}
-          favorites={favorites}
           shareId={shareId}
           sorting={sorting}
           onDetails={onDetails}
-          onFavorite={onFavorite}
           onSortingChange={this.handleSortingChange}
           onShareDialogClose={this.handleShareDialogClose}
           onShareDialogOpen={this.handleShareDialogOpen}

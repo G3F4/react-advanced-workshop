@@ -6,13 +6,11 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Grid from '@material-ui/core/Grid';
-import IconButton from '@material-ui/core/IconButton';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import Typography from '@material-ui/core/Typography';
-import FavoriteIcon from '@material-ui/icons/Favorite.js';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Price from '../../../common/price/Price.jsx';
@@ -46,8 +44,6 @@ const List = ({
   accommodations,
   shareId,
   sorting,
-  favorites,
-  onFavorite,
   onDetails,
   onSortingChange,
   onShareDialogClose,
@@ -101,14 +97,6 @@ const List = ({
                       ))}
                     </CardContent>
                     <CardActions className={classes.actions} disableActionSpacing>
-                      <IconButton
-                        onClick={() => {
-                          onFavorite(item);
-                        }}
-                        aria-label="Add to favorites"
-                      >
-                        <FavoriteIcon color={favorites.map(({ id }) => id).includes(item.id) ? 'error' : 'disabled'}/>
-                      </IconButton>
                       <Share
                         id={item.id}
                         open={shareId === item.id}
@@ -139,8 +127,6 @@ List.propTypes = {
   accommodations: PropTypes.object.isRequired,
   shareId: PropTypes.string.isRequired,
   sorting: PropTypes.number.isRequired,
-  favorites: PropTypes.array.isRequired,
-  onFavorite: PropTypes.func.isRequired,
   onDetails: PropTypes.func.isRequired,
   onSortingChange: PropTypes.func.isRequired,
   onShareDialogClose: PropTypes.func.isRequired,

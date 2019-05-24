@@ -2,11 +2,8 @@ import React, { Component } from 'react';
 import tinyParams from 'tiny-params';
 import AccommodationDetailsConnect from './components/views/accommodation-details/AccommodationDetailsConnect.jsx';
 import AccommodationList from './components/views/accommodation-list/AccommodationList.jsx';
-import Favorites from './components/layout/favorites-drawer/FavoritesDrawer.jsx';
 import Header from './components/layout/header/Header.jsx';
 import './App.css';
-
-const FAVORITES_LOCAL_STORAGE_KEY = 'favorites';
 
 const API_HOST = 'https://warsawjs-workshop-32-book-it-m.herokuapp.com';
 
@@ -135,18 +132,8 @@ class App extends Component {
     this.setState({ sorting }, this.fetchList);
   };
 
-  handleFavorite = (favorite) => {
-    const { favorites } = this.state;
-    const addToFavorite = favorites.findIndex(({ id }) => favorite.id === id) < 0;
-    const updatedFavorites = addToFavorite ?
-      [...favorites, favorite] : favorites.filter(item => item.id !== favorite.id);
-
-    localStorage.setItem(FAVORITES_LOCAL_STORAGE_KEY, JSON.stringify(updatedFavorites));
-    this.setState({ favorites: updatedFavorites });
-  };
-
   render() {
-    const { accommodations, filters, sorting, openedDetails, favorites } = this.state;
+    const { accommodations, filters, sorting, openedDetails } = this.state;
 
     return (
       <div className="App">
@@ -160,20 +147,13 @@ class App extends Component {
           <AccommodationList
             filters={filters}
             accommodations={accommodations}
-            favorites={favorites}
             sorting={sorting}
-            onDetails={() => { this.setState({ })}}
-            onFavorite={this.handleFavorite}
+            onDetails={() => { this.setState({})}}
             onSortingChange={this.handleSortingChange}
             onSearch={this.fetchList}
             onFiltersChange={this.handleFiltersChange}
           />
         )}
-        <Favorites
-          favorites={favorites}
-          onDetails={this.fetchDetails}
-          onFavorite={this.handleFavorite}
-        />
       </div>
     );
   }

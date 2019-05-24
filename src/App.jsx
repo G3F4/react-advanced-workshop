@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import tinyParams from 'tiny-params';
-import AccommodationDetails from './components/views/accommodation-details/AccommodationDetails.jsx';
+import AccommodationDetailsConnect from './components/views/accommodation-details/AccommodationDetailsConnect.jsx';
 import AccommodationList from './components/views/accommodation-list/AccommodationList.jsx';
 import Favorites from './components/layout/favorites-drawer/FavoritesDrawer.jsx';
 import Header from './components/layout/header/Header.jsx';
@@ -28,6 +28,7 @@ class App extends Component {
       minReviewsCount: '',
     },
     openedDetails: null,
+    detailsId: '',
     favorites: JSON.parse(localStorage.getItem(FAVORITES_LOCAL_STORAGE_KEY) || "[]"),
   };
 
@@ -151,7 +152,7 @@ class App extends Component {
       <div className="App">
         <Header />
         {openedDetails ? (
-          <AccommodationDetails
+          <AccommodationDetailsConnect
             openedDetails={openedDetails}
             onBackToList={this.handleBackToList}
           />
@@ -161,7 +162,7 @@ class App extends Component {
             accommodations={accommodations}
             favorites={favorites}
             sorting={sorting}
-            onDetails={this.fetchDetails}
+            onDetails={() => { this.setState({ })}}
             onFavorite={this.handleFavorite}
             onSortingChange={this.handleSortingChange}
             onSearch={this.fetchList}

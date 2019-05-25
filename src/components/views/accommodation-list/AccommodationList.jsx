@@ -154,7 +154,7 @@ class AccommodationList extends React.PureComponent {
           onFiltersMinReviewsCountChange={this.handleFiltersMinReviewsCountChange}
         />
         <List
-          accommodations={accommodations}
+          {...accommodations}
           shareId={shareId}
           sorting={sorting}
           onDetails={this.handleDetails}

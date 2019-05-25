@@ -1,6 +1,5 @@
 import React, { useEffect, useReducer } from 'react';
 import tinyParams from 'tiny-params';
-import PropTypes from 'prop-types';
 import AccommodationDetails from './AccommodationDetails';
 
 const API_HOST = 'https://warsawjs-workshop-32-book-it-m.herokuapp.com';
@@ -59,13 +58,8 @@ const AccommodationDetailsConnect = (props) => {
   }, [params]);
 
   return (
-    <AccommodationDetails openedDetails={state} {...props} />
+    <AccommodationDetails {...state} {...props} />
   );
-};
-
-AccommodationDetailsConnect.propTypes = {
-  detailsId: PropTypes.string.isRequired,
-  onBackToList: PropTypes.func.isRequired,
 };
 
 export default AccommodationDetailsConnect;

@@ -124,3 +124,15 @@ Workshop repo for purpose of WarsawJS workshop#32
 * memoizacja pracochłonnych obliczeń z wykorzystaniem `useMemo`
 
 [Rozwiązanie etapu](https://github.com/G3F4/warsawjs-workshop-32-book-it/compare/etap-3...etap-4?expand=1)
+
+## Etap 5 - Extra
+
+* `HOC` do obsługi stanu ładowania - `withFetching`
+  * [docs](https://reactjs.org/docs/higher-order-components.html)
+  * przykład:
+    * `const withSomething = Component => props => ComponentWithSomething`
+    * jeśli chcemy przekazać opcje `const withSomething = options => Component => props => ComponentWithSomething`
+  * wykorzystanie `withFetching` do obsługi ładowania listy i szczegółów
+* dodatkowo: obsługa stanu błędu analogicznie
+
+[Rozwiązanie etapu](https://github.com/G3F4/warsawjs-workshop-32-book-it/compare/etap-4...etap-5?expand=1)

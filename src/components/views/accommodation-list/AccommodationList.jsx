@@ -4,26 +4,87 @@ import { Grid } from '@material-ui/core';
 import Filters from './filters/Filters.jsx';
 import List from './list/List.jsx';
 
+const API_HOST = 'https://warsawjs-workshop-32-book-it-m.herokuapp.com';
+
+const SORTING = ['MAX_AVG_RATING', 'MAX_REVIEWS', 'MIN_PRICE', 'MAX_PRICE'];
+
 class AccommodationList extends React.Component {
   static propTypes = {
-    classes: PropTypes.object,
-    accommodations: PropTypes.object.isRequired,
-    favorites: PropTypes.array.isRequired,
-    filters: PropTypes.object.isRequired,
-    sorting: PropTypes.number.isRequired,
-    onFavorite: PropTypes.func.isRequired,
     onDetails: PropTypes.func.isRequired,
-    onSortingChange: PropTypes.func.isRequired,
-    onSearch: PropTypes.func.isRequired,
-    onFiltersChange: PropTypes.func.isRequired,
   };
 
   state = {
+    accommodations: {
+      data: null,
+      fetching: false,
+      errors: null,
+    },
+    sorting: 0,
+    filters: {
+      searchPhrase: '',
+      centre: '',
+      minPrice: '',
+      minAvgRating: '',
+      minReviewsCount: '',
+    },
     shareId: '',
   };
 
+  componentDidMount() {
+    const filters = JSON.parse(localStorage.getItem('filters')) || {};
+    const sorting = localStorage.getItem('sorting') || SORTING[0];
+
+    this.setState({
+      filters: {
+        centre: filters.centre || '',
+        minAvgRating: filters.minAvgRating || '',
+        minPrice: filters.minPrice || '',
+        minReviewsCount: filters.minReviewsCount || '',
+        searchPhrase: filters.searchPhrase ? filters.searchPhrase : '',
+      },
+      sorting: SORTING.indexOf(sorting) < 0 ? 0 : SORTING.indexOf(sorting),
+    }, this.fetchList);
+  }
+
+  fetchList = () => {
+    const { filters, sorting, accommodations } = this.state;
+    const { searchPhrase, centre, minPrice, minAvgRating, minReviewsCount } = filters;
+    const query = `?search=${searchPhrase}&centre=${centre}&minPrice=${minPrice}&minAvgRating=${minAvgRating}&minReviewsCount=${minReviewsCount}&sorting=${SORTING[sorting]}`;
+
+    localStorage.setItem('filters', JSON.stringify(filters));
+    localStorage.setItem('sorting', sorting);
+
+    this.setState({
+      accommodations: {
+        data: accommodations.data,
+        fetching: true,
+        errors: null,
+      },
+    });
+
+    fetch(`${API_HOST}/list${query}`).then(response => {
+      response.json().then(({ list }) => {
+        this.setState({
+          accommodations: {
+            data: list,
+            fetching: false,
+            errors: null,
+          },
+        });
+      }, errors => {
+        this.setState({
+          accommodations: {
+            data: null,
+            fetching: false,
+            errors: errors.message,
+          },
+        });
+      });
+    });
+  };
+
   handleSortingChange = (event, sorting) => {
-    this.props.onSortingChange(sorting);
+    this.setState({ sorting }, this.fetchList);
   };
 
   handleShareDialogOpen = shareId => {
@@ -34,58 +95,56 @@ class AccommodationList extends React.Component {
     this.setState({ shareId: '' });
   };
 
+  handleFiltersChange = filters => {
+    this.setState({ filters });
+  };
+
   handleSearchChange = (event, { newValue } = {}) => {
-    this.props.onFiltersChange({
-      ...this.props.filters,
-      search: newValue || event.target.value,
+    this.handleFiltersChange({
+      ...this.state.filters,
+      searchPhrase: newValue || event.target.value,
     });
   };
 
   handleFiltersCentreChange = event => {
-    this.props.onFiltersChange({
-      ...this.props.filters,
+    this.handleFiltersChange({
+      ...this.state.filters,
       centre: event.target.value,
     });
   };
 
   handleFiltersPriceChange = event => {
-    this.props.onFiltersChange({
-      ...this.props.filters,
+    this.handleFiltersChange({
+      ...this.state.filters,
       minPrice: event.target.value,
     });
   };
 
   handleFiltersMinAvgRatingChange = event => {
-    this.props.onFiltersChange({
-      ...this.props.filters,
+    this.handleFiltersChange({
+      ...this.state.filters,
       minAvgRating: event.target.value,
     });
   };
 
   handleFiltersMinReviewsCountChange = event => {
-    this.props.onFiltersChange({
-      ...this.props.filters,
+    this.handleFiltersChange({
+      ...this.state.filters,
       minReviewsCount: event.target.value,
     });
   };
 
   render() {
     const {
-      accommodations,
-      filters,
-      sorting,
-      favorites,
-      onSearch,
       onDetails,
-      onFavorite
     } = this.props;
-    const { shareId } = this.state;
+    const { shareId, filters, accommodations, sorting } = this.state;
 
     return (
       <Grid container>
         <Filters
           filters={filters}
-          onSearch={onSearch}
+          onSearch={this.fetchList}
           onSearchChange={this.handleSearchChange}
           onFiltersCentreChange={this.handleFiltersCentreChange}
           onFiltersPriceChange={this.handleFiltersPriceChange}
@@ -94,11 +153,9 @@ class AccommodationList extends React.Component {
         />
         <List
           accommodations={accommodations}
-          favorites={favorites}
           shareId={shareId}
           sorting={sorting}
           onDetails={onDetails}
-          onFavorite={onFavorite}
           onSortingChange={this.handleSortingChange}
           onShareDialogClose={this.handleShareDialogClose}
           onShareDialogOpen={this.handleShareDialogOpen}

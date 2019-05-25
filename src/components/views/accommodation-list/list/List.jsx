@@ -13,9 +13,9 @@ import Tabs from '@material-ui/core/Tabs';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Price from '../../../common/price/Price.jsx';
-import Rating from '../../../common/rating/Rating.jsx';
-import Share from '../../../common/share/Share.jsx';
+import Price from '../../../common/price/Price';
+import Rating from '../../../common/rating/Rating';
+import Share from '../../../common/share/Share';
 
 const styles = theme => ({
   card: {

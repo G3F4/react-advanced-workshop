@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
-import AccommodationDetails from './AccommodationDetails.jsx';
+import AccommodationDetails from './AccommodationDetails';
 
 const API_HOST = 'https://warsawjs-workshop-32-book-it-m.herokuapp.com';
 

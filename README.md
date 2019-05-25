@@ -18,10 +18,26 @@ Workshop repo for purpose of WarsawJS workshop#32
     * layout
     * widoki/stany
     * uwaga: nazwy komponentów warto nazywać biznesowo a nie technicznie
-  * wydzielenie nagłówka aplikacji oraz dolnej półki do osobnych komponentów
+  * wydzielenie nagłówka aplikacji jako części `layout`
+  * wydzielenie listy oraz szczegółów do osobnych komponentów (widoki/stany)
     * uwaga: funckje przekazywane jako propsy warto nazwać z prefixem `on`, np: `onSearch`
-  * wydzielenie listy oraz szczegółów do osobnych komponentów
-    * uwaga: w przypadku listy warto utworzyć komponent typu kontener, zawierający logikę oraz wyświetlający komponenty odpowiedzialne za wyświetlenie filtrów oraz wyników wyszukiwania
+    * uwaga: pobieranie danych przenieść na poziom tych komponentów
+      * przykład komponentu `App` po przeniesieniu listy i szczegółów
+      ```javascript
+      <div className="App">
+        <Header />
+        {detailsId ? (
+          <AccommodationDetails
+            detailsId={detailsId}
+            onBackToList={this.handleBackToList}
+          />
+        ) : (
+          <AccommodationList
+            onDetails={this.handleDetails}
+          />
+        )}
+      </div>
+      ```
   * wydzielenie powtarzalnych części JSX do reużywalnych komponentów
     * uwaga: podobnie wyglądające części apkikacji to np: cena, rating czy przycisk udostępniania
 * dodatkowo: otypowanie propsów przy wykorzystaniu `prop-types`

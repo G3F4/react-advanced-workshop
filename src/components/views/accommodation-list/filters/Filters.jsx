@@ -150,7 +150,7 @@ class Filters extends React.Component {
               inputProps={{
                 classes,
                 placeholder: 'Destination',
-                value: filters.search,
+                value: filters.searchPhrase,
                 onChange: onSearchChange,
               }}
               theme={{

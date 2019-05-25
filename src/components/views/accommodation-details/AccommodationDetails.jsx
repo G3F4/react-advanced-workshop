@@ -20,6 +20,8 @@ import FacilityIcon from './facility-icon/FacilityIcon.jsx';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
+const API_HOST = 'https://warsawjs-workshop-32-book-it-m.herokuapp.com';
+
 const styles = theme => ({
   card: {
     maxWidth: '100%',
@@ -49,13 +51,50 @@ class AccommodationDetails extends React.Component {
   static propTypes = {
     classes: PropTypes.object,
     theme: PropTypes.object,
-    openedDetails: PropTypes.object.isRequired,
+    detailsId: PropTypes.string.isRequired,
     onBackToList: PropTypes.func.isRequired,
   };
 
   state = {
     activeStep: 0,
     shareId: '',
+    openedDetails: null,
+  };
+
+  componentDidMount() {
+    this.fetchDetails();
+  }
+
+  fetchDetails = () => {
+    const params = `?id=${this.props.detailsId}`;
+
+    this.setState({
+      openedDetails: {
+        ...(this.state.openedDetails || {}),
+        fetching: true,
+        errors: null,
+      },
+    });
+
+    fetch(`${API_HOST}/details${params}`).then(response => {
+      response.json().then(({ data }) => {
+        this.setState({
+          openedDetails: {
+            data,
+            fetching: false,
+            errors: null,
+          },
+        });
+      }, errors => {
+        this.setState({
+          openedDetails: {
+            data: null,
+            fetching: false,
+            errors: errors.message,
+          },
+        });
+      });
+    });
   };
 
   handleNext = () => {
@@ -83,10 +122,10 @@ class AccommodationDetails extends React.Component {
   };
 
   render() {
-    const { classes, theme, openedDetails, onBackToList } = this.props;
-    const { activeStep } = this.state;
+    const { classes, theme, onBackToList } = this.props;
+    const { activeStep, openedDetails } = this.state;
 
-    return (
+    return openedDetails && (
       <React.Fragment>
         {openedDetails.errors ? (
           <Typography variant="body1">{openedDetails.errors}</Typography>

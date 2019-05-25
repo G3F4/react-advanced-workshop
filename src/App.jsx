@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import AccommodationDetails from './components/views/accommodation-details/AccommodationDetails.jsx';
 import AccommodationList from './components/views/accommodation-list/AccommodationList.jsx';
 import Header from './components/layout/header/Header.jsx';
-import './App.css';
 
 class App extends Component {
   state = {

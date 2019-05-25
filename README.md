@@ -45,6 +45,7 @@ Workshop repo for purpose of WarsawJS workshop#32
 * dodatkowo: wykorzystanie dynamicznego wybierania typu do powiązania enumów do komponentów (np. rodzaj `facility` na odpowiednią ikonę)
   * [docs](https://reactjs.org/docs/jsx-in-depth.html#choosing-the-type-at-runtime)
 
+[Rozwiązanie etapu](https://github.com/G3F4/warsawjs-workshop-32-book-it/compare/etap-0...etap-1?expand=1)
 
 ## Etap 2 - Hooks
 
@@ -78,27 +79,47 @@ Workshop repo for purpose of WarsawJS workshop#32
   * a następnie wywołujemy ją
   * jako zależność efektu przekazujemy identyfikator szczegółów do pobrania
 
+[Rozwiązanie etapu](https://github.com/G3F4/warsawjs-workshop-32-book-it/compare/etap-1...etap-2?expand=1)
 
 ## Etap 3 - Routing, Code Splitting and lazy loading
+[docs](https://reactjs.org/docs/code-splitting.html)
 
-* `react-router` do obsługi routingu aplikacji
-  * routing widoku listy
-  * routing widoku szczegółów
-* wydzielenie nowych `chunk`ów w routerze przy wykorzystaniu dynamicznych importów(`await import()`)
-* wykorzystanie utila `React.lazy` do stworzenia komponetów z lazy loading
+* `react-router-dom` do obsługi routingu aplikacji
+  * `Route` widoku listy
+  * `Route` widoku szczegółów
+  * wykorzystanie `withRouter` do dodania do komponentu propsa `history`,
+    * przykład:
+      * `export default withRouter(AccommodationList);`
+    * props umożliwia zmianę routingu poprzez wywołanie metody push
+      * przykład:
+        * `this.props.history.push('/');`
+* routing na widok szczegółów ustawia parametr `id` w adresie, który zostanie wykorzystany do pobrania danych zamiast przekazywania identyfikator przez propsy
+  * do odczytania wartości parametrów w adresie wykorzystamy `tiny-params`
+    * przykład: 
+      * `const { id } = tinyParams(window.location.href);`
+* pozbycie się wszystkich powiązań widoków aplikacji do komponentu `App`, nie powinien zawierać stanu ani metod
+* zamiana na komponent funkcyjny klasy `App`
+* wydzielenie nowych `chunk`ów w routerze przy wykorzystaniu dynamicznych importów oraz `React.lazy`
+  * przykład:
+    * `const AccommodationList = lazy(() => import('./components/views/accommodation-list/AccommodationList'));`
 * obsługa ładowania komponentu przy wykorzystaniu `React.Suspense`
+  * przykład:
+    ```javascript
+    <Suspense fallback={<div>Loading...</div>}>
+      ...
+    </Suspense>
+    ```
+[Rozwiązanie etapu](https://github.com/G3F4/warsawjs-workshop-32-book-it/compare/etap-2...etap-3?expand=1)
 
 ## Etap 4 - Optymalizacja
 
-* wykorzystanie komponentu `React.Pure` do optymalizacji nadmiarowej ilości przerenderowań
-* wykorzystanie utila `React.memo` do stworzenia zmemoizowanych komponentów
-* obsługa błędów komponentów przy wykorzystaniu `getDerivedStateFromError` oraz `componentDidCatch`
+* wykorzystanie komponentu `React.PureComponent` do optymalizacji nadmiarowej ilości przerenderowań komponentów klasowych
+  * [docs](https://reactjs.org/docs/react-api.html#reactpurecomponent)
+* wykorzystanie utila `React.memo` do stworzenia zmemoizowanych komponentów funkcyjnych
+  * [docs](https://reactjs.org/docs/react-api.html#reactmemo)
+* obsługa błędów przy wykorzystaniu `componentDidCatch`
+  * [docs](https://reactjs.org/docs/react-component.html#componentdidcatch)
+  * dodanie nowego komponentu wrappującego, który w przypadku przechwycenia błędu ustawia swój stan na błędny i zamiast wyświetlać `children`, wyświetla komunikat błędu
 * memoizacja pracochłonnych obliczeń z wykorzystaniem `useMemo`
-* odroczenie wykonania eventu w komponencie z sugestiami (`debaunce`)
 
-## Etap 5 - Extra
-
-* wykorzystanie dekoratorów do dodania stanu ładowaniu komponentów
-* własny `HOC`?
-* użycie `Context`?
-* wykorzystanie `Portal`?
+[Rozwiązanie etapu](https://github.com/G3F4/warsawjs-workshop-32-book-it/compare/etap-3...etap-4?expand=1)

@@ -50,7 +50,7 @@ const styles = theme => ({
   },
 });
 
-const FacilityIcon = ({ classes, facilities }) => (
+const FacilityIcon = React.memo(({ classes, facilities }) => (
   <div className={classes.facilities}>
     {facilities.map(facility => {
       const Icon = ICONS_MAP[facility] || Error;
@@ -58,7 +58,7 @@ const FacilityIcon = ({ classes, facilities }) => (
       return <Icon key={facility} />;
     })}
   </div>
-);
+));
 
 FacilityIcon.propTypes = {
   classes: PropTypes.object,

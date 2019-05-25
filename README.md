@@ -80,6 +80,7 @@ Workshop repo for purpose of WarsawJS workshop#32
 
 
 ## Etap 3 - Routing, Code Splitting and lazy loading
+[docs](https://reactjs.org/docs/code-splitting.html)
 
 * `react-router-dom` do obsługi routingu aplikacji
   * `Route` widoku listy
@@ -109,11 +110,14 @@ Workshop repo for purpose of WarsawJS workshop#32
 
 ## Etap 4 - Optymalizacja
 
-* wykorzystanie komponentu `React.Pure` do optymalizacji nadmiarowej ilości przerenderowań
-* wykorzystanie utila `React.memo` do stworzenia zmemoizowanych komponentów
-* obsługa błędów komponentów przy wykorzystaniu `getDerivedStateFromError` oraz `componentDidCatch`
+* wykorzystanie komponentu `React.PureComponent` do optymalizacji nadmiarowej ilości przerenderowań komponentów klasowych
+  * [docs](https://reactjs.org/docs/react-api.html#reactpurecomponent)
+* wykorzystanie utila `React.memo` do stworzenia zmemoizowanych komponentów funkcyjnych
+  * [docs](https://reactjs.org/docs/react-api.html#reactmemo)
+* obsługa błędów przy wykorzystaniu `componentDidCatch`
+  * [docs](https://reactjs.org/docs/react-component.html#componentdidcatch)
+  * dodanie nowego komponentu wrappującego, który w przypadku przechwycenia błędu ustawia swój stan na błędny i zamiast wyświetlać `children`, wyświetla komunikat błędu
 * memoizacja pracochłonnych obliczeń z wykorzystaniem `useMemo`
-* odroczenie wykonania eventu w komponencie z sugestiami (`debaunce`)
 
 ## Etap 5 - Extra
 

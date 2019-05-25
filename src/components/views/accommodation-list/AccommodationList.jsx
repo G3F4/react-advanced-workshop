@@ -9,7 +9,7 @@ const API_HOST = 'https://warsawjs-workshop-32-book-it-m.herokuapp.com';
 
 const SORTING = ['MAX_AVG_RATING', 'MAX_REVIEWS', 'MIN_PRICE', 'MAX_PRICE'];
 
-class AccommodationList extends React.Component {
+class AccommodationList extends React.PureComponent {
   static propTypes = {
     history: PropTypes.object,
   };

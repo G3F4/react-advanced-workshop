@@ -44,7 +44,7 @@ const styles = theme => ({
   },
 });
 
-class Filters extends React.Component {
+class Filters extends React.PureComponent {
   static propTypes = {
     classes: PropTypes.object,
     filters: PropTypes.object.isRequired,

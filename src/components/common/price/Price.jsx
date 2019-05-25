@@ -9,7 +9,7 @@ const styles = theme => ({
   },
 });
 
-const Price = ({ classes, price }) => (
+const Price = React.memo(({ classes, price }) => (
   <div className={classes.price}>
     <Typography variant="h6" gutterBottom>
       Price
@@ -25,7 +25,7 @@ const Price = ({ classes, price }) => (
       )}
     </Typography>
   </div>
-);
+));
 
 Price.propTypes = {
   classes: PropTypes.object,

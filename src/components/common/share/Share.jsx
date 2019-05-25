@@ -9,7 +9,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
 import ShareIcon from '@material-ui/icons/Share';
 
-const Share = ({ id, open, onClose, onOpen }) => (
+const Share = React.memo(({ id, open, onClose, onOpen }) => (
   <div>
     <IconButton aria-label="Share" onClick={() => onOpen(id)}>
       <ShareIcon />
@@ -32,7 +32,7 @@ const Share = ({ id, open, onClose, onOpen }) => (
       </DialogActions>
     </Dialog>
   </div>
-);
+));
 
 Share.propTypes = {
   classes: PropTypes.object,

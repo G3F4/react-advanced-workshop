@@ -11,7 +11,7 @@ const styles = {
   },
 };
 
-const Rating = ({ classes, rating }) => (
+const Rating = React.memo(({ classes, rating }) => (
   <div>
     <Typography variant="h6" gutterBottom>
       Good
@@ -23,7 +23,7 @@ const Rating = ({ classes, rating }) => (
       {`${rating.reviews} reviews`}
     </Typography>
   </div>
-);
+));
 
 Rating.propTypes = {
   classes: PropTypes.object,

@@ -95,6 +95,7 @@ Workshop repo for purpose of WarsawJS workshop#32
         * `this.props.history.push('/');`
 * routing na widok szczegółów ustawia parametr `id` w adresie, który zostanie wykorzystany do pobrania danych zamiast przekazywania identyfikator przez propsy
   * do odczytania wartości parametrów w adresie wykorzystamy `tiny-params`
+    * [docs](https://www.npmjs.com/package/tiny-params)
     * przykład: 
       * `const { id } = tinyParams(window.location.href);`
 * pozbycie się wszystkich powiązań widoków aplikacji do komponentu `App`, nie powinien zawierać stanu ani metod

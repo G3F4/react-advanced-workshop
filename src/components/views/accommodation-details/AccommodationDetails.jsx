@@ -52,7 +52,6 @@ class AccommodationDetails extends React.Component {
     theme: PropTypes.object,
     history: PropTypes.object,
     openedDetails: PropTypes.object.isRequired,
-    detailsId: PropTypes.string,
     onBackToList: PropTypes.func.isRequired,
   };
 

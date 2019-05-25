@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Grid } from '@material-ui/core';
-import Filters from './filters/Filters.jsx';
-import List from './list/List.jsx';
+import Filters from './filters/Filters';
+import List from './list/List';
 
 const API_HOST = 'https://warsawjs-workshop-32-book-it-m.herokuapp.com';
 

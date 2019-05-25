@@ -13,10 +13,10 @@ import MobileStepper from '@material-ui/core/MobileStepper';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft.js';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight.js';
 import { withStyles } from '@material-ui/core/styles';
-import Price from '../../common/price/Price.jsx';
-import Rating from '../../common/rating/Rating.jsx';
-import Share from '../../common/share/Share.jsx';
-import FacilityIcon from './facility-icon/FacilityIcon.jsx';
+import Price from '../../common/price/Price';
+import Rating from '../../common/rating/Rating';
+import Share from '../../common/share/Share';
+import FacilityIcon from './facility-icon/FacilityIcon';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 

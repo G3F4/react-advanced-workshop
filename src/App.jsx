@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import AccommodationDetailsConnect from './components/views/accommodation-details/AccommodationDetailsConnect.jsx';
-import AccommodationList from './components/views/accommodation-list/AccommodationList.jsx';
-import Header from './components/layout/header/Header.jsx';
+import React from 'react';
+import AccommodationDetailsConnect from './components/views/accommodation-details/AccommodationDetailsConnect';
+import AccommodationList from './components/views/accommodation-list/AccommodationList';
+import Header from './components/layout/header/Header';
 
-class App extends Component {
+class App extends React.Component {
   state = {
     detailsId: null,
   };

@@ -48,12 +48,35 @@ Workshop repo for purpose of WarsawJS workshop#32
 
 ## Etap 2 - Hooks
 
-* zamiana komponetów klasowych odpowiedzialnych za pobieranie danych do funkcji
-* użycie `useState` jako zamiennik `state` klasy
+* wydzielenie logiki pobierania szczegółów do osobnego komponentu funkcyjnego
+* użycie `useReducer` jako zamiennik `Redux`
+  * [docs](https://reactjs.org/docs/hooks-reference.html#usereducer)
+  * do hooka `useReducer` przekazać: reducer oraz stan inicjalny
+  * hook zwraca tablicę z 2 elementami, pierwszy to stan reducera `state` a drugi to funkcja do wykonywania akcji `dispatch`
+  * implementacja reducera do pobierania szczegółów
+    * reducer to funkcja, która jako argumenty dostaje stan i akcje
+      * przykład stanu reducera
+        ```javascript
+        {
+          data: null,
+          fetching: true,
+          errors: null,
+        }
+        ```
+      * przykład wykonania akcji:
+        ```javascript
+        dispatch({ type: 'DETAILS_FETCH_SUCCESS', payload: data });
+        ```
+    * potrzebne są 3 akcje: rozpoczęcia pobierania, sukcesu oraz błędu
+      * DETAILS_FETCH_REQUEST
+      * DETAILS_FETCH_SUCCESS
+      * DETAILS_FETCH_FAILURE
 * użycie `useEffect` jako alternatywa cyklu komponentu klasowego
-* powiązanie stanów do odświeżania danych
-* stworzenie customowego hooka do pobierania danych
-* wykorzystanie `useReducer` jako alternatywa dla `Redux`
+  * hook przyjmuje 2 argumenty: efekt - funkcja, która wykona się za każdym razem gdy zmienią się zależności, które są drugim argumentem w postaci tablicy. Jeśli jakikolwiek z elementów tablicy zależności się zmieni, wtedy efekt wykona się ponownie.
+    * uwaga: funkcja efektu nie może być funkcją asynchroniczną
+  * w scope efektu implementujemy asynchroniczną funkcję pobierającą dane
+  * a następnie wywołujemy ją
+  * jako zależność efektu przekazujemy identyfikator szczegółów do pobrania
 
 
 ## Etap 3 - Routing, Code Splitting and lazy loading

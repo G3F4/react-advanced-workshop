@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AccommodationDetails from './components/views/accommodation-details/AccommodationDetails.jsx';
+import AccommodationDetailsConnect from './components/views/accommodation-details/AccommodationDetailsConnect.jsx';
 import AccommodationList from './components/views/accommodation-list/AccommodationList.jsx';
 import Header from './components/layout/header/Header.jsx';
 import './App.css';
@@ -26,7 +26,7 @@ class App extends Component {
       <div className="App">
         <Header />
         {detailsId ? (
-          <AccommodationDetails
+          <AccommodationDetailsConnect
             detailsId={detailsId}
             onBackToList={this.handleBackToList}
           />

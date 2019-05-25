@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from "react-router-dom";
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
@@ -52,7 +52,6 @@ class AccommodationDetails extends React.Component {
     theme: PropTypes.object,
     history: PropTypes.object,
     openedDetails: PropTypes.object.isRequired,
-    detailsId: PropTypes.string,
     onBackToList: PropTypes.func.isRequired,
   };
 

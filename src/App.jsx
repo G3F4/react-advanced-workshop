@@ -12,8 +12,8 @@ const App = () => (
       <Header/>
       <Suspense fallback={<div>Loading...</div>}>
         <Switch>
-          <Route exact path="/" component={AccommodationList}/>
-          <Route path="/details" component={AccommodationDetailsConnect}/>
+          <Route path="/details" component={AccommodationDetailsConnect} />
+          <Route exact path="/" component={AccommodationList} />
         </Switch>
       </Suspense>
     </Router>

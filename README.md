@@ -45,6 +45,7 @@ Workshop repo for purpose of WarsawJS workshop#32
 * dodatkowo: wykorzystanie dynamicznego wybierania typu do powiązania enumów do komponentów (np. rodzaj `facility` na odpowiednią ikonę)
   * [docs](https://reactjs.org/docs/jsx-in-depth.html#choosing-the-type-at-runtime)
 
+[Rozwiązanie etapu](https://github.com/G3F4/warsawjs-workshop-32-book-it/compare/etap-0...etap-1?expand=1)
 
 ## Etap 2 - Hooks
 
@@ -78,6 +79,7 @@ Workshop repo for purpose of WarsawJS workshop#32
   * a następnie wywołujemy ją
   * jako zależność efektu przekazujemy identyfikator szczegółów do pobrania
 
+[Rozwiązanie etapu](https://github.com/G3F4/warsawjs-workshop-32-book-it/compare/etap-1...etap-2?expand=1)
 
 ## Etap 3 - Routing, Code Splitting and lazy loading
 [docs](https://reactjs.org/docs/code-splitting.html)
@@ -93,6 +95,7 @@ Workshop repo for purpose of WarsawJS workshop#32
         * `this.props.history.push('/');`
 * routing na widok szczegółów ustawia parametr `id` w adresie, który zostanie wykorzystany do pobrania danych zamiast przekazywania identyfikator przez propsy
   * do odczytania wartości parametrów w adresie wykorzystamy `tiny-params`
+    * [docs](https://www.npmjs.com/package/tiny-params)
     * przykład: 
       * `const { id } = tinyParams(window.location.href);`
 * pozbycie się wszystkich powiązań widoków aplikacji do komponentu `App`, nie powinien zawierać stanu ani metod
@@ -107,6 +110,7 @@ Workshop repo for purpose of WarsawJS workshop#32
       ...
     </Suspense>
     ```
+[Rozwiązanie etapu](https://github.com/G3F4/warsawjs-workshop-32-book-it/compare/etap-2...etap-3?expand=1)
 
 ## Etap 4 - Optymalizacja
 
@@ -119,9 +123,4 @@ Workshop repo for purpose of WarsawJS workshop#32
   * dodanie nowego komponentu wrappującego, który w przypadku przechwycenia błędu ustawia swój stan na błędny i zamiast wyświetlać `children`, wyświetla komunikat błędu
 * memoizacja pracochłonnych obliczeń z wykorzystaniem `useMemo`
 
-## Etap 5 - Extra
-
-* wykorzystanie dekoratorów do dodania stanu ładowaniu komponentów
-* własny `HOC`?
-* użycie `Context`?
-* wykorzystanie `Portal`?
+[Rozwiązanie etapu](https://github.com/G3F4/warsawjs-workshop-32-book-it/compare/etap-3...etap-4?expand=1)

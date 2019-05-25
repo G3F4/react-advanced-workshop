@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import AccommodationDetails from './components/views/accommodation-details/AccommodationDetails';
 import AccommodationList from './components/views/accommodation-list/AccommodationList';
 import Header from './components/layout/header/Header';
 
-class App extends Component {
+class App extends React.Component {
   state = {
     detailsId: null,
   };

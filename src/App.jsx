@@ -1,3 +1,4 @@
+import React from 'react';
 import { CircularProgress, FormGroup, Grid } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
@@ -12,7 +13,6 @@ import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import TextField from '@material-ui/core/TextField';
 import Toolbar from '@material-ui/core/Toolbar';
-import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -33,13 +33,11 @@ import FreeBreakfast from '@material-ui/icons/FreeBreakfast';
 import Autosuggest from 'react-autosuggest';
 import match from 'autosuggest-highlight/match';
 import parse from 'autosuggest-highlight/parse';
-import tinyParams from 'tiny-params';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
-import './App.css';
 
 const API_HOST = 'https://warsawjs-workshop-32-book-it-m.herokuapp.com';
 
@@ -119,7 +117,7 @@ const styles = theme => ({
 });
 
 
-class App extends Component {
+class App extends React.Component {
   state = {
     accommodations: {
       data: null,
@@ -128,7 +126,7 @@ class App extends Component {
     },
     sorting: 0,
     filters: {
-      search: '',
+      searchPhrase: '',
       centre: '',
       minPrice: '',
       minAvgRating: '',
@@ -143,28 +141,29 @@ class App extends Component {
   };
 
   componentDidMount() {
-    const params = tinyParams(window.location.href);
+    const filters = JSON.parse(localStorage.getItem('filters')) || {};
+    const sorting = localStorage.getItem('sorting') || SORTING[0];
 
     if (window.location.pathname === '/details') {
-      this.fetchDetails(params.id);
+      this.fetchDetails(filters.id);
     } else {
       this.setState({
         filters: {
-          centre: params.centre || '',
-          minAvgRating: params.minAvgRating || '',
-          minPrice: params.minPrice || '',
-          minReviewsCount: params.minReviewsCount || '',
-          search: params.search || '',
+          centre: filters.centre || '',
+          minAvgRating: filters.minAvgRating || '',
+          minPrice: filters.minPrice || '',
+          minReviewsCount: filters.minReviewsCount || '',
+          searchPhrase: filters.searchPhrase || '',
         },
-        sorting: SORTING.indexOf(params.sorting) < 0 ? 0 : SORTING.indexOf(params.sorting),
+        sorting: SORTING.indexOf(sorting) < 0 ? 0 : SORTING.indexOf(sorting),
       }, this.fetchList);
     }
   }
 
   fetchList = () => {
     const { filters, sorting, accommodations } = this.state;
-    const { search, centre, minPrice, minAvgRating, minReviewsCount } = filters;
-    const url = `/list?search=${search}&centre=${centre}&minPrice=${minPrice}&minAvgRating=${minAvgRating}&minReviewsCount=${minReviewsCount}&sorting=${SORTING[sorting]}`;
+    const { searchPhrase, centre, minPrice, minAvgRating, minReviewsCount } = filters;
+    const url = `/list?search=${searchPhrase}&centre=${centre}&minPrice=${minPrice}&minAvgRating=${minAvgRating}&minReviewsCount=${minReviewsCount}&sorting=${SORTING[sorting]}`;
 
     window.history.pushState(null, '', url);
 
@@ -275,7 +274,7 @@ class App extends Component {
     this.setState({
       filters: {
         ...this.state.filters,
-        search: newValue || event.target.value,
+        searchPhrase: newValue || event.target.value,
       },
     });
   };
@@ -550,7 +549,7 @@ class App extends Component {
                     inputProps={{
                       classes,
                       placeholder: 'Destination',
-                      value: filters.search,
+                      value: filters.searchPhrase,
                       onChange: this.handleSearchChange,
                     }}
                     theme={{

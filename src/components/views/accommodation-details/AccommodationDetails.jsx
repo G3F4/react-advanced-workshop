@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from "react-router-dom";
 import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
@@ -13,10 +14,10 @@ import MobileStepper from '@material-ui/core/MobileStepper';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft.js';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight.js';
 import { withStyles } from '@material-ui/core/styles';
-import Price from '../../common/price/Price.jsx';
-import Rating from '../../common/rating/Rating.jsx';
-import Share from '../../common/share/Share.jsx';
-import FacilityIcon from './facility-icon/FacilityIcon.jsx';
+import Price from '../../common/price/Price';
+import Rating from '../../common/rating/Rating';
+import Share from '../../common/share/Share';
+import FacilityIcon from './facility-icon/FacilityIcon';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -49,6 +50,7 @@ class AccommodationDetails extends React.Component {
   static propTypes = {
     classes: PropTypes.object,
     theme: PropTypes.object,
+    history: PropTypes.object,
     openedDetails: PropTypes.object.isRequired,
     detailsId: PropTypes.string,
     onBackToList: PropTypes.func.isRequired,
@@ -83,8 +85,12 @@ class AccommodationDetails extends React.Component {
     this.setState({ shareId: '' });
   };
 
+  handleBackToList = () => {
+    this.props.history.push('/');
+  };
+
   render() {
-    const { classes, theme, openedDetails, onBackToList } = this.props;
+    const { classes, theme, openedDetails } = this.props;
     const { activeStep } = this.state;
 
     return (
@@ -151,7 +157,7 @@ class AccommodationDetails extends React.Component {
                   <Button
                     aria-label="Back to list"
                     className={classes.floatRight}
-                    onClick={onBackToList}
+                    onClick={this.handleBackToList}
                   >
                     Back to list
                   </Button>
@@ -165,4 +171,4 @@ class AccommodationDetails extends React.Component {
   }
 }
 
-export default withStyles(styles, { withTheme: true })(AccommodationDetails);
+export default withRouter(withStyles(styles, { withTheme: true })(AccommodationDetails));

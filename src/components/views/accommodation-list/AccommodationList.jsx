@@ -1,8 +1,9 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Grid } from '@material-ui/core';
-import Filters from './filters/Filters.jsx';
-import List from './list/List.jsx';
+import Filters from './filters/Filters';
+import List from './list/List';
 
 const API_HOST = 'https://warsawjs-workshop-32-book-it-m.herokuapp.com';
 
@@ -10,7 +11,7 @@ const SORTING = ['MAX_AVG_RATING', 'MAX_REVIEWS', 'MIN_PRICE', 'MAX_PRICE'];
 
 class AccommodationList extends React.Component {
   static propTypes = {
-    onDetails: PropTypes.func.isRequired,
+    history: PropTypes.object,
   };
 
   state = {
@@ -134,10 +135,11 @@ class AccommodationList extends React.Component {
     });
   };
 
+  handleDetails = detailsId => {
+    this.props.history.push(`/details?id=${detailsId}`);
+  };
+
   render() {
-    const {
-      onDetails,
-    } = this.props;
     const { shareId, filters, accommodations, sorting } = this.state;
 
     return (
@@ -155,7 +157,7 @@ class AccommodationList extends React.Component {
           accommodations={accommodations}
           shareId={shareId}
           sorting={sorting}
-          onDetails={onDetails}
+          onDetails={this.handleDetails}
           onSortingChange={this.handleSortingChange}
           onShareDialogClose={this.handleShareDialogClose}
           onShareDialogOpen={this.handleShareDialogOpen}
@@ -165,4 +167,4 @@ class AccommodationList extends React.Component {
   }
 }
 
-export default AccommodationList;
+export default withRouter(AccommodationList);

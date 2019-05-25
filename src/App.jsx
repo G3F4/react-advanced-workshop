@@ -1,43 +1,21 @@
-import React, { Component } from 'react';
-import AccommodationDetailsConnect from './components/views/accommodation-details/AccommodationDetailsConnect.jsx';
-import AccommodationList from './components/views/accommodation-list/AccommodationList.jsx';
-import Header from './components/layout/header/Header.jsx';
+import React, { lazy, Suspense } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
+import Header from './components/layout/header/Header';
 
-class App extends Component {
-  state = {
-    detailsId: null,
-  };
+const AccommodationDetailsConnect = lazy(() => import('./components/views/accommodation-details/AccommodationDetailsConnect'));
+const AccommodationList = lazy(() => import('./components/views/accommodation-list/AccommodationList'));
 
-  handleBackToList = () => {
-    this.setState({
-      detailsId: null,
-    });
-  };
-
-  handleDetails = detailsId => {
-    this.setState({ detailsId });
-  };
-
-  render() {
-    const { detailsId } = this.state;
-
-    return (
-      <div className="App">
-        <Header />
-        {detailsId ? (
-          <AccommodationDetailsConnect
-            detailsId={detailsId}
-            onBackToList={this.handleBackToList}
-          />
-        ) : (
-          <AccommodationList
-            onDetails={this.handleDetails}
-          />
-        )}
-      </div>
-    );
-  }
-}
+const App = () => (
+  <Router>
+    <Header/>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Switch>
+        <Route exact path="/" component={AccommodationList}/>
+        <Route path="/details" component={AccommodationDetailsConnect}/>
+      </Switch>
+    </Suspense>
+  </Router>
+);
 
 export default App;

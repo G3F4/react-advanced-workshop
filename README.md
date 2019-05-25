@@ -81,12 +81,31 @@ Workshop repo for purpose of WarsawJS workshop#32
 
 ## Etap 3 - Routing, Code Splitting and lazy loading
 
-* `react-router` do obsługi routingu aplikacji
-  * routing widoku listy
-  * routing widoku szczegółów
-* wydzielenie nowych `chunk`ów w routerze przy wykorzystaniu dynamicznych importów(`await import()`)
-* wykorzystanie utila `React.lazy` do stworzenia komponetów z lazy loading
+* `react-router-dom` do obsługi routingu aplikacji
+  * `Route` widoku listy
+  * `Route` widoku szczegółów
+  * wykorzystanie `withRouter` do dodania do komponentu propsa `history`,
+    * przykład:
+      * `export default withRouter(AccommodationList);`
+    * props umożliwia zmianę routingu poprzez wywołanie metody push
+      * przykład:
+        * `this.props.history.push('/');`
+* routing na widok szczegółów ustawia parametr `id` w adresie, który zostanie wykorzystany do pobrania danych zamiast przekazywania identyfikator przez propsy
+  * do odczytania wartości parametrów w adresie wykorzystamy `tiny-params`
+    * przykład: 
+      * `const { id } = tinyParams(window.location.href);`
+* pozbycie się wszystkich powiązań widoków aplikacji do komponentu `App`, nie powinien zawierać stanu ani metod
+* zamiana na komponent funkcyjny klasy `App`
+* wydzielenie nowych `chunk`ów w routerze przy wykorzystaniu dynamicznych importów oraz `React.lazy`
+  * przykład:
+    * `const AccommodationList = lazy(() => import('./components/views/accommodation-list/AccommodationList'));`
 * obsługa ładowania komponentu przy wykorzystaniu `React.Suspense`
+  * przykład:
+    ```javascript
+    <Suspense fallback={<div>Loading...</div>}>
+      ...
+    </Suspense>
+    ```
 
 ## Etap 4 - Optymalizacja
 
